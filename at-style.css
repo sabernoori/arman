@@ -1,0 +1,34 @@
+/* .overview_wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+
+@media (min-width: 1601px) {
+  .overview_wrapper {
+    flex-direction: row;
+  }
+  .wallet_wrapper { order: 3; width: 21rem; }
+  .overview_center { order: 2; width: 100%; }
+  .profile_wrapper { order: 1; width: 21rem; }
+}
+*/
+@media (min-width: 991px) and (max-width: 1580px) {
+  .overview_wrapper {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .wallet_wrapper { order: 3; width: 48%; min-width: 21rem;   }
+  .overview_center { order: 1; width: calc(100%-2rem); min-width: none; max-width: none;}
+  .profile_wrapper { order: 2; width: 48%; min-width: 21rem; }
+  .center_cards-wrapper {margin-left: 6rem;}
+}
+/*
+@media (max-width: 767px) {
+  .overview_wrapper {
+    flex-direction: column;
+  }
+  .wallet_wrapper { order: 3; width: 100%; }
+  .overview_center { order: 2; width: 100%; }
+  .profile_wrapper { order: 1; width: 100%; }
+} */
