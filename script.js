@@ -1,3 +1,5 @@
+// + related codes for mobile menu //
+
 document.addEventListener('DOMContentLoaded', function() {
     const menuIcon = document.querySelector('.nav_menu-item.menu-icon');
     const overlay = document.querySelector('.nav_overlay');
@@ -17,3 +19,5 @@ document.addEventListener('DOMContentLoaded', function() {
     menuIcon.addEventListener('click', openMenu);
     closeOverlay.addEventListener('click', closeMenu);
 });
+
+// ~ related codes for mobile menu //
