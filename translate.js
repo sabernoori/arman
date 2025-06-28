@@ -30,8 +30,45 @@ const translations = {
         "basePrice": "Unit Price:",
         "transactionToman": "Toman",
         "paid": "Paid",
-        "got": "Recevied"
+        "got": "Recevied",
+        "langDisplay": "En"
+
     },
+
+        tr: {
+        "navCta": "Hızlı Al veya Sat",
+        "navDashboard": "Kontrol Paneli",
+        "navWallet": "Cüzdan",
+        "navTransactions": "İşlemler",
+        "navTicket": "Bilet",
+        "navSetting": "Ayarlar",
+        "profName": "Sab Nouri",
+        "profStatus": "Kimlik Doğrulandı",
+        "profEdit": "Profili Düzenle",
+        "currentPriceRial": "Tether Canlı Fiyat",
+        "currentPriceLira": "Türk Lirası Canlı Fiyat",
+        "numPriceRial": "94.000",
+        "numPriceLira": "38,5",
+        "dashHeading": "Tether'ı En İyi Fiyata Al",
+        "dashDescription": "{Brand Name} ekibimizle şimdi Tether alım veya satım emrinizi verin! Emriniz anında yerine getirilecektir.",
+        "dashCTA": "Alım veya Satım Emri Ver",
+        "yourBalance": "Tether Bakiyeniz",
+        "usdt": "USDT",
+        "num-balance": "537,00",
+        "Withdraw": "Çek",
+        "lastTransactions": "Son İşlemler",
+        "buy": "Al",
+        "sell": "Sat",
+        "pending": "Beklemede",
+        "done": "Tamamlandı",
+        "canceled": "İptal Edildi",
+        "basePrice": "Birim Fiyat:",
+        "transactionToman": "Toman",
+        "paid": "Ödendi",
+        "got": "Alındı",
+        "langDisplay": "Tr"
+    },
+
     fa: {
         "navCta": "خرید یا فروش سریع",
         "navDashboard": "داشبورد",
@@ -62,7 +99,8 @@ const translations = {
         "basePrice": "قیمت واحد:",
         "transactionToman": "تومان",
         "paid": "پرداختی",
-        "got": "دریافتی"
+        "got": "دریافتی",
+        "langDisplay": "Fa"
     }
 };
 
