@@ -110,7 +110,7 @@ const translations = {
 // Update page content based on language
 function updateLanguage() {
     const lang = document.documentElement.lang || 'en';
-    const dir = lang === 'fa' ? 'rtl' : 'ltr';
+    const dir = lang === 'fa' ? 'rtl' : 'ltr'; // Turkish uses LTR like English
     document.documentElement.setAttribute('dir', dir);
     
     const elements = document.querySelectorAll('[data-i18n]');
@@ -119,6 +119,7 @@ function updateLanguage() {
         element.textContent = translations[lang]?.[key] || element.textContent;
     });
 }
+
 
 // MutationObserver to detect lang attribute changes
 const observer = new MutationObserver((mutations) => {
