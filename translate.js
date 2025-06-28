@@ -107,6 +107,9 @@ const translations = {
 
 
 
+// --- TRANSLATIONS OBJECT ---
+// const translations = { fa: {...}, en: {...}, tr: {...} };
+
 // --- DEFAULT LANGUAGE SETUP --- //
 const savedLang = localStorage.getItem('lang');
 const defaultLang = savedLang || 'fa';
@@ -151,12 +154,19 @@ document.querySelectorAll('.lang_item').forEach(item => {
         if (newLang) {
             document.documentElement.setAttribute('lang', newLang);
             localStorage.setItem('lang', newLang);
+
+            // Close the dropdown menu
+            const dropdown = item.closest('.w-dropdown');
+            if (dropdown && dropdown.classList.contains('w--open')) {
+                dropdown.classList.remove('w--open');
+            }
         }
     });
 });
 
 // --- INITIAL LOAD --- //
 updateLanguage();
+
 
 
 
