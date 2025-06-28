@@ -107,40 +107,56 @@ const translations = {
 
 
 
-// Update page content based on language
+// --- DEFAULT LANGUAGE SETUP --- //
+const savedLang = localStorage.getItem('lang');
+const defaultLang = savedLang || 'fa';
+document.documentElement.setAttribute('lang', defaultLang);
+document.documentElement.setAttribute('dir', defaultLang === 'fa' ? 'rtl' : 'ltr');
+
+// --- UPDATE CONTENT ON LANGUAGE CHANGE --- //
 function updateLanguage() {
     const lang = document.documentElement.lang || 'en';
     const dir = lang === 'fa' ? 'rtl' : 'ltr';
     document.documentElement.setAttribute('dir', dir);
-    
-    // For Turkish, use English localization while keeping Turkish translations
-    if (lang === 'tr') {
-        document.documentElement.setAttribute('lang', 'en');
-        setTimeout(() => document.documentElement.setAttribute('lang', 'tr'), 0);
-    }
-    
+
     const elements = document.querySelectorAll('[data-i18n]');
     elements.forEach(element => {
         const key = element.getAttribute('data-i18n');
-        element.textContent = translations[lang]?.[key] || element.textContent;
+        if (translations[lang]?.[key]) {
+            element.textContent = translations[lang][key];
+        }
     });
+
+    // Update dropdown toggle text
+    const langDisplay = document.querySelector('[data-i18n="langDisplay"]');
+    if (langDisplay && translations[lang]?.langDisplay) {
+        langDisplay.textContent = translations[lang].langDisplay;
+    }
 }
 
-
-// MutationObserver to detect lang attribute changes
-const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
+// --- OBSERVER FOR HTML LANG CHANGES --- //
+const observer = new MutationObserver(mutations => {
+    mutations.forEach(mutation => {
         if (mutation.type === 'attributes' && mutation.attributeName === 'lang') {
             updateLanguage();
         }
     });
 });
+observer.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
 
-// Observe changes to the lang attribute
-observer.observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ['lang']
+// --- CLICK HANDLER FOR LANGUAGE SWITCH --- //
+document.querySelectorAll('.lang_item').forEach(item => {
+    item.addEventListener('click', () => {
+        const newLang = item.getAttribute('language');
+        if (newLang) {
+            document.documentElement.setAttribute('lang', newLang);
+            localStorage.setItem('lang', newLang);
+        }
+    });
 });
 
-// Initial load
+// --- INITIAL LOAD --- //
 updateLanguage();
+
+
+
