@@ -107,16 +107,13 @@ const translations = {
 
 
 
-// --- TRANSLATIONS OBJECT ---
-// const translations = { fa: {...}, en: {...}, tr: {...} };
-
-// --- DEFAULT LANGUAGE SETUP --- //
+/ --- DEFAULT LANGUAGE SETUP --- //
 const savedLang = localStorage.getItem('lang');
 const defaultLang = savedLang || 'fa';
 document.documentElement.setAttribute('lang', defaultLang);
 document.documentElement.setAttribute('dir', defaultLang === 'fa' ? 'rtl' : 'ltr');
 
-// --- UPDATE CONTENT ON LANGUAGE CHANGE --- //
+// --- UPDATE PAGE CONTENT BASED ON LANGUAGE --- //
 function updateLanguage() {
     const lang = document.documentElement.lang || 'en';
     const dir = lang === 'fa' ? 'rtl' : 'ltr';
@@ -130,14 +127,14 @@ function updateLanguage() {
         }
     });
 
-    // Update dropdown toggle text
+    // Update dropdown toggle label
     const langDisplay = document.querySelector('[data-i18n="langDisplay"]');
     if (langDisplay && translations[lang]?.langDisplay) {
         langDisplay.textContent = translations[lang].langDisplay;
     }
 }
 
-// --- OBSERVER FOR HTML LANG CHANGES --- //
+// --- OBSERVE LANG ATTRIBUTE CHANGES --- //
 const observer = new MutationObserver(mutations => {
     mutations.forEach(mutation => {
         if (mutation.type === 'attributes' && mutation.attributeName === 'lang') {
@@ -145,9 +142,12 @@ const observer = new MutationObserver(mutations => {
         }
     });
 });
-observer.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['lang']
+});
 
-// --- CLICK HANDLER FOR LANGUAGE SWITCH --- //
+// --- LANGUAGE SWITCH HANDLER --- //
 document.querySelectorAll('.lang_item').forEach(item => {
     item.addEventListener('click', () => {
         const newLang = item.getAttribute('language');
@@ -155,18 +155,17 @@ document.querySelectorAll('.lang_item').forEach(item => {
             document.documentElement.setAttribute('lang', newLang);
             localStorage.setItem('lang', newLang);
 
-            // Close the dropdown menu
-            const dropdown = item.closest('.w-dropdown');
-            if (dropdown && dropdown.classList.contains('w--open')) {
-                dropdown.classList.remove('w--open');
+            // ✅ Close dropdown via Webflow toggle button click
+            const dropdownToggle = document.querySelector('.lang_dropdown .w-dropdown-toggle');
+            if (dropdownToggle) {
+                dropdownToggle.click(); // This uses Webflow’s native toggle
             }
         }
     });
 });
 
-// --- INITIAL LOAD --- //
+// --- INITIAL RENDER --- //
 updateLanguage();
-
 
 
 
