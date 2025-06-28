@@ -113,9 +113,11 @@ function updateLanguage() {
     const dir = lang === 'fa' ? 'rtl' : 'ltr';
     document.documentElement.setAttribute('dir', dir);
     
-    // Set data-locale attribute to handle Webflow localization styles
-    const locale = lang === 'tr' ? 'en' : lang;
-    document.documentElement.setAttribute('data-locale', locale);
+    // For Turkish, use English localization while keeping Turkish translations
+    if (lang === 'tr') {
+        document.documentElement.setAttribute('lang', 'en');
+        setTimeout(() => document.documentElement.setAttribute('lang', 'tr'), 0);
+    }
     
     const elements = document.querySelectorAll('[data-i18n]');
     elements.forEach(element => {
