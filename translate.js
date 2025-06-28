@@ -110,8 +110,12 @@ const translations = {
 // Update page content based on language
 function updateLanguage() {
     const lang = document.documentElement.lang || 'en';
-    const dir = lang === 'fa' ? 'rtl' : 'ltr'; // Turkish uses LTR like English
+    const dir = lang === 'fa' ? 'rtl' : 'ltr';
     document.documentElement.setAttribute('dir', dir);
+    
+    // Set data-locale attribute to handle Webflow localization styles
+    const locale = lang === 'tr' ? 'en' : lang;
+    document.documentElement.setAttribute('data-locale', locale);
     
     const elements = document.querySelectorAll('[data-i18n]');
     elements.forEach(element => {
