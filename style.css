@@ -1,5 +1,4 @@
-/*  managing responsive for dashboard cards on desktop screens */
-
+/*  managing responive for dashboard cards on desktop screens */
 @media (min-width: 991px) and (max-width: 1580px) {
   .overview_wrapper {
     flex-direction: row;
@@ -10,6 +9,7 @@
   .profile_wrapper { order: 2; width: 48%; min-width: 21rem; }
   .center_cards-wrapper {margin-left: 6rem;}
 }
+
 
 /* Mobile Navbar opening animations */
 .nav_overlay {
