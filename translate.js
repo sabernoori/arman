@@ -106,14 +106,13 @@ const translations = {
 
 
 
-
-/ --- DEFAULT LANGUAGE SETUP --- //
+// --- DEFAULT LANGUAGE SETUP --- //
 const savedLang = localStorage.getItem('lang');
 const defaultLang = savedLang || 'fa';
 document.documentElement.setAttribute('lang', defaultLang);
 document.documentElement.setAttribute('dir', defaultLang === 'fa' ? 'rtl' : 'ltr');
 
-// --- UPDATE PAGE CONTENT BASED ON LANGUAGE --- //
+// --- UPDATE CONTENT ON LANGUAGE CHANGE --- //
 function updateLanguage() {
     const lang = document.documentElement.lang || 'en';
     const dir = lang === 'fa' ? 'rtl' : 'ltr';
@@ -127,14 +126,14 @@ function updateLanguage() {
         }
     });
 
-    // Update dropdown toggle label
+    // Update dropdown toggle text
     const langDisplay = document.querySelector('[data-i18n="langDisplay"]');
     if (langDisplay && translations[lang]?.langDisplay) {
         langDisplay.textContent = translations[lang].langDisplay;
     }
 }
 
-// --- OBSERVE LANG ATTRIBUTE CHANGES --- //
+// --- OBSERVER FOR HTML LANG CHANGES --- //
 const observer = new MutationObserver(mutations => {
     mutations.forEach(mutation => {
         if (mutation.type === 'attributes' && mutation.attributeName === 'lang') {
@@ -142,29 +141,20 @@ const observer = new MutationObserver(mutations => {
         }
     });
 });
-observer.observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ['lang']
-});
+observer.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
 
-// --- LANGUAGE SWITCH HANDLER --- //
+// --- CLICK HANDLER FOR LANGUAGE SWITCH --- //
 document.querySelectorAll('.lang_item').forEach(item => {
     item.addEventListener('click', () => {
         const newLang = item.getAttribute('language');
         if (newLang) {
             document.documentElement.setAttribute('lang', newLang);
             localStorage.setItem('lang', newLang);
-
-            // ✅ Close dropdown via Webflow toggle button click
-            const dropdownToggle = document.querySelector('.lang_dropdown .w-dropdown-toggle');
-            if (dropdownToggle) {
-                dropdownToggle.click(); // This uses Webflow’s native toggle
-            }
         }
     });
 });
 
-// --- INITIAL RENDER --- //
+// --- INITIAL LOAD --- //
 updateLanguage();
 
 
