@@ -1,0 +1,22 @@
+{
+  "navCta": "خرید یا فروش سریع",
+  "navDashboard": "داشبورد",
+  "navWallet": "کیف پول",
+  "navTransactions": "تراکنش ها",
+  "navTicket": "تیکت",
+  "navSetting": "تنظیمات",
+  "profName": "صابر نوری",
+  "profStatus": "تایید هویت شده",
+  "profEdit": "ویرایش پروفایل",
+  "currentPriceRial": "قیمت لحظه ای تتر",
+  "currentPriceLira": "قیمت لحظه ای به لیر ترکیه",
+  "numPriceRial": "94,000",
+  "numPriceLira": "38,5",
+  "dashHeading": "خرید تتر با بهترین قیمت",
+  "dashDescription": "همین حالا سفارش خرید یا فروش تتر خود را ثبت کنید! همکاران ما در {نام برند} بصورت فوری سفارش شما را تحویل خواهند داد.",
+  "dashCTA": "ثبت سفارش خرید یا فروش",
+  "yourBalance": "موجودی تتر شما",
+  "usdt": "USDT",
+  "num-balance": "537.00",
+  "Withdraw": "برداشت"
+}

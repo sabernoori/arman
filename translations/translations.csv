@@ -1,0 +1,21 @@
+key,fa,en
+navCta,خرید یا فروش سریع,Quick Buy or Sell
+navDashboard,داشبورد,Dashboard
+navWallet,کیف پول,Wallet
+navTransactions,تراکنش ها,Transactions
+navTicket,تیکت,Support Ticket
+navSetting,تنظیمات,Settings
+profName,صابر نوری,Saber Noori
+profStatus,تایید هویت شده,Identity Verified
+profEdit,ویرایش پروفایل,Edit Profile
+currentPriceRial,قیمت لحظه ای تتر,Tether Live Price
+currentPriceLira,قیمت لحظه ای به لیر ترکیه,Live Price in Turkish Lira
+numPriceRial,"94,000","94,000"
+numPriceLira,"38,5",38.5
+dashHeading,خرید تتر با بهترین قیمت,Buy Tether at the Best Price
+dashDescription,همین حالا سفارش خرید یا فروش تتر خود را ثبت کنید! همکاران ما در {نام برند} بصورت فوری سفارش شما را تحویل خواهند داد.,Place your Tether buy or sell order now! Our team at {Brand Name} will fulfill your order immediately.
+dashCTA,ثبت سفارش خرید یا فروش,Place Buy or Sell Order
+yourBalance,موجودی تتر شما,Your Tether Balance
+usdt,USDT,USDT
+num-balance,537.00,537.00
+Withdraw,برداشت,Withdraw

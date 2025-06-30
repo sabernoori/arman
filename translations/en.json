@@ -1,0 +1,22 @@
+{
+  "navCta": "Quick Buy or Sell",
+  "navDashboard": "Dashboard",
+  "navWallet": "Wallet",
+  "navTransactions": "Transactions",
+  "navTicket": "Ticket",
+  "navSetting": "Settings",
+  "profName": "Sab Nouri",
+  "profStatus": "Identity Verified",
+  "profEdit": "Edit Profile",
+  "currentPriceRial": "Tether Live Price",
+  "currentPriceLira": "Live Price in Turkish Lira",
+  "numPriceRial": "94,000",
+  "numPriceLira": "38.5",
+  "dashHeading": "Buy Tether at the Best Price",
+  "dashDescription": "Place your Tether buy or sell order now! Our team at {Brand Name} will fulfill your order immediately.",
+  "dashCTA": "Place Buy or Sell Order",
+  "yourBalance": "Your Tether Balance",
+  "usdt": "USDT",
+  "num-balance": "537.00",
+  "Withdraw": "Withdraw"
+}

@@ -1,0 +1,13 @@
+How to run:
+
+npm install
+npm run scrap
+
+
+-----------------------------
+
+How to change the website you want to scrape:
+
+In scraper.js file look for:
+  // Go to any URL you want to analyze
+and change the url to the one you want.

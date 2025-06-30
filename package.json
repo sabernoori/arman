@@ -1,0 +1,15 @@
+{
+  "name": "scraper",
+  "version": "1.0.0",
+  "main": "scraper.js",
+  "scripts": {
+    "scrap": "node scraper.js > structure.md"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^24.4.0"
+  },
+  "devDependencies": {},
+  "description": ""
+}
