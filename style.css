@@ -4,12 +4,11 @@
     flex-direction: row;
     flex-wrap: wrap;
   }
-  .wallet_wrapper { order: 3; width: 48%; min-width: 21rem;   }
+  .wallet_wrapper { order: 3; width: 48%; min-width: 21rem; }
   .overview_center { order: 1; width: calc(100%-2rem); min-width: none; max-width: none;}
   .profile_wrapper { order: 2; width: 48%; min-width: 21rem; }
   .center_cards-wrapper {margin-left: 6rem;}
 }
-
 
 /* Mobile Navbar opening animations */
 .nav_overlay {
@@ -50,4 +49,40 @@
   filter: blur(0);
   transform: translateY(0);
   transition-delay: 0.1s;
+}
+
+/* Credit Card 3D Hover Animation */
+.center_cards-wrapper {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.card_frontt {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.card_frontt:hover {
+  transform: skew(-17deg, 11deg) translate(0px, 46px) rotate3d(1, 1, 0, 15deg);
+  box-shadow: 
+    rgba(0, 0, 0, 0.1) 35px -8px 35px 0px,
+    rgba(0, 0, 0, 0.06) -5px 5px 15px 0px;
+}
+
+@media screen and (max-width: 991px) {
+  .card_frontt:hover {
+    transform: skew(-17deg, 11deg) translate(-83px, 123px) rotate3d(1, 1, 0, 15deg);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card_frontt:hover {
+    transform: skew(-17deg, 11deg) translate(111px, -89px) rotate3d(1, 1, 0, 15deg);
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .card_frontt:hover {
+    transform: scale(0.85) skew(-17deg, 11deg) translate(79px, 10px) rotate3d(1, 1, 0, 15deg);
+  }
 }
