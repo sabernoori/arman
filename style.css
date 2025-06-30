@@ -1,20 +1,20 @@
 /* 3D Card Animation Styles */
-.center_cards-wrapper.has-mouse-tracking {
+/* .center_cards-wrapper.has-mouse-tracking {
     will-change: transform;
     transform-style: preserve-3d;
     transition: transform 0.5s ease-out;
     perspective: 1000px;
     cursor: pointer;
-}
+} */
 
-.card_frontt,
+/* .card_frontt,
 .card_back {
     will-change: transform;
     transition: all 0.5s ease-out;
     transform-style: preserve-3d;
     backface-visibility: hidden;
     pointer-events: none;
-}
+} */
 
 @media (max-width: 991px) {
     .center_cards-wrapper.has-mouse-tracking {
