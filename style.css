@@ -52,27 +52,27 @@
 }
 
 /* Credit Card 3D Animation Setup */
-.center_cards-wrapper {
+/* .center_cards-wrapper {
   perspective: 1000px;
   transform-style: preserve-3d;
-  cursor: move; /* Indicates movable element */
-}
+  cursor: move; 
+} */
 
-.card_frontt, .card_back {
-  will-change: transform; /* Optimize for animations */
+/* .card_frontt, .card_back {
+  will-change: transform; 
   transform-style: preserve-3d;
   transition: box-shadow 0.3s ease;
-}
+} */
 
 /* Enhanced shadows for depth */
-.card_frontt {
+/* .card_frontt {
   box-shadow: 
     rgba(0, 0, 0, 0.05) 25px -4px 25px 0px,
     rgba(0, 0, 0, 0.03) -5px 5px 15px 0px;
-}
+} */
 
-.card_back {
+/* .card_back {
   box-shadow: 
     rgba(0, 0, 0, 0.04) 20px -3px 20px 0px,
     rgba(0, 0, 0, 0.02) -4px 4px 12px 0px;
-}
+} */
