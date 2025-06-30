@@ -107,8 +107,23 @@ const translations = {
 
 
 
+// --- COOKIE HELPER FUNCTIONS --- //
+function setCookie(name, value, days = 365) {
+    const date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    const expires = `expires=${date.toUTCString()}`;
+    document.cookie = `${name}=${value};${expires};path=/`;
+}
+
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return null;
+}
+
 // --- DEFAULT LANGUAGE SETUP --- //
-const savedLang = localStorage.getItem('lang');
+const savedLang = getCookie('lang');
 const defaultLang = savedLang || 'fa';
 document.documentElement.setAttribute('lang', defaultLang);
 document.documentElement.setAttribute('dir', defaultLang === 'fa' ? 'rtl' : 'ltr');
@@ -150,7 +165,7 @@ document.querySelectorAll('.lang_item').forEach(item => {
         const newLang = item.getAttribute('language');
         if (newLang) {
             document.documentElement.setAttribute('lang', newLang);
-            localStorage.setItem('lang', newLang);
+            setCookie('lang', newLang);
         }
     });
 });
