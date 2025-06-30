@@ -12,9 +12,11 @@ window.addEventListener('load', () => {
 const cardSettings = {
     perspective: 1000,
     transformOrigin: 'center center',
-    rotationRange: 25, // Increased rotation range
-    moveRange: 15, // Increased movement range
-    backCardFactor: 0.6, // Increased back card movement
+    rotationRange: 15, // Reduced rotation for smoother effect
+    moveRange: 8, // Reduced movement range
+    backCardFactor: 0.4, // Reduced back card movement
+    mobileRotationRange: 5, // Very subtle rotation for mobile
+    mobileMovementRange: 3, // Minimal movement for mobile
 };
 
 // Helper function to map mouse position to rotation
@@ -59,17 +61,22 @@ function setupCardAnimation() {
         const mouseX = e.clientX - left;
         const mouseY = e.clientY - top;
 
-        // Calculate rotation based on mouse position
-        const rotateY = mapRange(mouseX, 0, width, -cardSettings.rotationRange, cardSettings.rotationRange);
-        const rotateX = mapRange(mouseY, 0, height, cardSettings.rotationRange, -cardSettings.rotationRange);
+        // Check if we're on mobile/tablet
+        const isMobile = window.innerWidth <= 991;
+        const currentRotationRange = isMobile ? cardSettings.mobileRotationRange : cardSettings.rotationRange;
+        const currentMovementRange = isMobile ? cardSettings.mobileMovementRange : cardSettings.moveRange;
 
-        // Animate front card
+        // Calculate rotation based on mouse position
+        const rotateY = mapRange(mouseX, 0, width, -currentRotationRange, currentRotationRange);
+        const rotateX = mapRange(mouseY, 0, height, currentRotationRange, -currentRotationRange);
+
+        // Animate front card with reduced Y movement
         gsap.to(frontCard, {
             rotationX: rotateX,
             rotationY: rotateY,
-            x: (mouseX - centerX) * 0.1,
-            y: (mouseY - centerY) * 0.1,
-            duration: 0.5,
+            x: (mouseX - centerX) * (currentMovementRange / 100),
+            y: (mouseY - centerY) * (currentMovementRange / 200), // Reduced Y movement
+            duration: isMobile ? 0.8 : 0.5,
             ease: 'power2.out'
         });
 
@@ -77,9 +84,9 @@ function setupCardAnimation() {
         gsap.to(backCard, {
             rotationX: rotateX * cardSettings.backCardFactor,
             rotationY: rotateY * cardSettings.backCardFactor,
-            x: (mouseX - centerX) * 0.05,
-            y: (mouseY - centerY) * 0.05,
-            duration: 0.7,
+            x: (mouseX - centerX) * (currentMovementRange / 200),
+            y: (mouseY - centerY) * (currentMovementRange / 400), // Reduced Y movement
+            duration: isMobile ? 1 : 0.7,
             ease: 'power2.out'
         });
     }
@@ -112,38 +119,6 @@ function setupCardAnimation() {
     // Add hover effect class
     cardWrapper.classList.add('has-mouse-tracking');
 }
-
-    // Test animation with click trigger
-    const profDesc = document.querySelector('.prof_desc');
-    console.log('Setting up click animation on:', profDesc);
-    
-    if (profDesc) {
-        // Add click event to trigger animation
-        profDesc.addEventListener('click', () => {
-            console.log('Element clicked, starting animation');
-            gsap.to(profDesc, {
-                color: '#FF5733',
-                scale: 1.1,
-                duration: 0.5,
-                repeat: 3,
-                yoyo: true,
-                onStart: () => {
-                    console.log('Animation started');
-                    profDesc.style.cursor = 'pointer';
-                },
-                onComplete: () => {
-                    console.log('Animation completed');
-                    gsap.to(profDesc, {
-                        color: '',
-                        scale: 1,
-                        duration: 0.3
-                    });
-                }
-            });
-        });
-    } else {
-        console.error('Could not find .prof_desc element');
-    }
 
     // Initialize card animations
     setupCardAnimation();

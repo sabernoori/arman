@@ -2,7 +2,7 @@
 .center_cards-wrapper.has-mouse-tracking {
     will-change: transform;
     transform-style: preserve-3d;
-    transition: transform 0.1s ease-out;
+    transition: transform 0.5s ease-out;
     perspective: 1000px;
     cursor: pointer;
 }
@@ -10,20 +10,42 @@
 .card_frontt,
 .card_back {
     will-change: transform;
-    transition: all 0.3s ease-out;
+    transition: all 0.5s ease-out;
     transform-style: preserve-3d;
     backface-visibility: hidden;
     pointer-events: none;
 }
 
+@media (max-width: 991px) {
+    .center_cards-wrapper.has-mouse-tracking {
+        transition: transform 0.8s ease-out;
+    }
+    
+    .card_frontt,
+    .card_back {
+        transition: all 0.8s ease-out;
+    }
+}
+
 /* Add subtle shadow transition on hover */
 .center_cards-wrapper.has-mouse-tracking .card_frontt {
-    box-shadow: rgba(0, 0, 0, 0.1) 25px -4px 35px 0px;
-    transition: transform 0.1s ease-out, box-shadow 0.3s ease-out;
+    box-shadow: rgba(0, 0, 0, 0.1) 15px -2px 25px 0px;
+    transition: transform 0.5s ease-out, box-shadow 0.5s ease-out;
 }
 
 .center_cards-wrapper.has-mouse-tracking:hover .card_frontt {
-    box-shadow: rgba(0, 0, 0, 0.2) 35px -8px 45px 0px;
+    box-shadow: rgba(0, 0, 0, 0.15) 20px -4px 30px 0px;
+}
+
+@media (max-width: 991px) {
+    .center_cards-wrapper.has-mouse-tracking .card_frontt {
+        box-shadow: rgba(0, 0, 0, 0.08) 10px -1px 15px 0px;
+        transition: transform 0.8s ease-out, box-shadow 0.8s ease-out;
+    }
+    
+    .center_cards-wrapper.has-mouse-tracking:hover .card_frontt {
+        box-shadow: rgba(0, 0, 0, 0.12) 15px -2px 20px 0px;
+    }
 }
 
 /* Profile description styles */
