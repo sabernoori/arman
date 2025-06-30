@@ -2,33 +2,28 @@
 .center_cards-wrapper.has-mouse-tracking {
     will-change: transform;
     transform-style: preserve-3d;
-    transition: none;
+    transition: transform 0.5s ease-out;
     perspective: 1000px;
     cursor: pointer;
-    transform: none !important;
 }
 
-.card_frontt {
+.card_frontt,
+.card_back {
     will-change: transform;
-    transition: transform 0.5s ease-out;
+    transition: all 0.5s ease-out;
     transform-style: preserve-3d;
     backface-visibility: hidden;
     pointer-events: none;
-    transform-origin: center center;
-}
-
-.card_back {
-    pointer-events: none;
-    transform: none !important;
 }
 
 @media (max-width: 991px) {
-    .center_cards-wrapper.has-mouse-tracking,
+    .center_cards-wrapper.has-mouse-tracking {
+        transition: transform 0.8s ease-out;
+    }
+    
     .card_frontt,
     .card_back {
-        transform: none !important;
-        transition: none;
-        cursor: default;
+        transition: all 0.8s ease-out;
     }
 }
 
@@ -44,8 +39,12 @@
 
 @media (max-width: 991px) {
     .center_cards-wrapper.has-mouse-tracking .card_frontt {
-        box-shadow: rgba(0, 0, 0, 0.1) 15px -2px 25px 0px;
-        transition: none;
+        box-shadow: rgba(0, 0, 0, 0.08) 10px -1px 15px 0px;
+        transition: transform 0.8s ease-out, box-shadow 0.8s ease-out;
+    }
+    
+    .center_cards-wrapper.has-mouse-tracking:hover .card_frontt {
+        box-shadow: rgba(0, 0, 0, 0.12) 15px -2px 20px 0px;
     }
 }
 
