@@ -12,11 +12,11 @@ window.addEventListener('load', () => {
 const cardSettings = {
     perspective: 1000,
     transformOrigin: 'center center',
-    rotationRange: 15, // Reduced rotation for smoother effect
-    moveRange: 8, // Reduced movement range
-    backCardFactor: 0.4, // Reduced back card movement
-    mobileRotationRange: 5, // Very subtle rotation for mobile
-    mobileMovementRange: 3, // Minimal movement for mobile
+    rotationRange: 15,
+    moveRange: 8,
+    // Back card animation disabled
+    // mobileRotationRange: 5, // Mobile animations disabled
+    // mobileMovementRange: 3, // Mobile animations disabled
 };
 
 // Helper function to map mouse position to rotation
@@ -46,8 +46,14 @@ function setupCardAnimation() {
     });
 
     // Initial state
-    gsap.set([frontCard, backCard], {
-        transformOrigin: cardSettings.transformOrigin
+    gsap.set(frontCard, {
+        transformOrigin: cardSettings.transformOrigin,
+        clearProps: 'all'
+    });
+    
+    gsap.set(backCard, {
+        transformOrigin: cardSettings.transformOrigin,
+        z: -10
     });
 
     // Create animation context
@@ -57,48 +63,50 @@ function setupCardAnimation() {
 
     // Handle mouse movement
     function handleMouseMove(e) {
+        // Skip animation on mobile
+        if (window.innerWidth <= 991) return;
+
         const { left, top, width, height } = bounds;
         const mouseX = e.clientX - left;
         const mouseY = e.clientY - top;
 
-        // Check if we're on mobile/tablet
-        const isMobile = window.innerWidth <= 991;
-        const currentRotationRange = isMobile ? cardSettings.mobileRotationRange : cardSettings.rotationRange;
-        const currentMovementRange = isMobile ? cardSettings.mobileMovementRange : cardSettings.moveRange;
-
         // Calculate rotation based on mouse position
-        const rotateY = mapRange(mouseX, 0, width, -currentRotationRange, currentRotationRange);
-        const rotateX = mapRange(mouseY, 0, height, currentRotationRange, -currentRotationRange);
+        const rotateY = mapRange(mouseX, 0, width, -cardSettings.rotationRange, cardSettings.rotationRange);
+        const rotateX = mapRange(mouseY, 0, height, cardSettings.rotationRange, -cardSettings.rotationRange);
 
-        // Animate front card with reduced Y movement
+        // Animate front card only
         gsap.to(frontCard, {
             rotationX: rotateX,
             rotationY: rotateY,
-            x: (mouseX - centerX) * (currentMovementRange / 100),
-            y: (mouseY - centerY) * (currentMovementRange / 200), // Reduced Y movement
-            duration: isMobile ? 0.8 : 0.5,
+            x: (mouseX - centerX) * (cardSettings.moveRange / 100),
+            z: 10,
+            duration: 0.5,
             ease: 'power2.out'
         });
 
-        // Animate back card with reduced effect
-        gsap.to(backCard, {
-            rotationX: rotateX * cardSettings.backCardFactor,
-            rotationY: rotateY * cardSettings.backCardFactor,
-            x: (mouseX - centerX) * (currentMovementRange / 200),
-            y: (mouseY - centerY) * (currentMovementRange / 400), // Reduced Y movement
-            duration: isMobile ? 1 : 0.7,
-            ease: 'power2.out'
-        });
+        // Back card animation disabled
+        // gsap.to(backCard, { ... });
     }
 
     // Reset animation
     function handleMouseLeave() {
-        // Return cards to original position
-        gsap.to([frontCard, backCard], {
+        if (window.innerWidth <= 991) return;
+
+        // Return front card to original position
+        gsap.to(frontCard, {
             rotationX: 0,
             rotationY: 0,
             x: 0,
             y: 0,
+            z: 0,
+            duration: 0.7,
+            ease: 'power3.out',
+            clearProps: 'transform'
+        });
+        
+        // Ensure back card stays in place
+        gsap.to(backCard, {
+            z: -10,
             duration: 0.7,
             ease: 'power3.out'
         });
