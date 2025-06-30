@@ -3,14 +3,17 @@
     will-change: transform;
     transform-style: preserve-3d;
     transition: transform 0.1s ease-out;
+    perspective: 1000px;
+    cursor: pointer;
 }
 
 .card_frontt,
 .card_back {
     will-change: transform;
-    transition: transform 0.1s ease-out;
+    transition: all 0.3s ease-out;
     transform-style: preserve-3d;
     backface-visibility: hidden;
+    pointer-events: none;
 }
 
 /* Add subtle shadow transition on hover */

@@ -1,13 +1,20 @@
-// Initialize GSAP
-gsap.registerPlugin(Observer);
+// Wait for GSAP to be available
+window.addEventListener('load', () => {
+    if (typeof gsap === 'undefined') {
+        console.error('GSAP is not loaded. Please ensure you have included the GSAP library.');
+        return;
+    }
+    
+    // Initialize GSAP
+    gsap.registerPlugin(Observer);
 
 // Card animation settings
 const cardSettings = {
     perspective: 1000,
     transformOrigin: 'center center',
-    rotationRange: 15,
-    moveRange: 10,
-    backCardFactor: 0.4, // Back card moves less than front card
+    rotationRange: 25, // Increased rotation range
+    moveRange: 15, // Increased movement range
+    backCardFactor: 0.6, // Increased back card movement
 };
 
 // Helper function to map mouse position to rotation
@@ -25,7 +32,15 @@ function setupCardAnimation() {
 
     // Add perspective to wrapper
     gsap.set(cardWrapper, {
-        perspective: cardSettings.perspective
+        perspective: cardSettings.perspective,
+        transformStyle: 'preserve-3d'
+    });
+
+    // Console log for debugging
+    console.log('Card animation setup complete', {
+        wrapper: cardWrapper,
+        frontCard: frontCard,
+        backCard: backCard
     });
 
     // Initial state
@@ -98,5 +113,13 @@ function setupCardAnimation() {
     cardWrapper.classList.add('has-mouse-tracking');
 }
 
-// Initialize animations when DOM is ready
-document.addEventListener('DOMContentLoaded', setupCardAnimation);
+    // Initialize animations
+    setupCardAnimation();
+});
+
+// Backup initialization for when GSAP loads later
+document.addEventListener('DOMContentLoaded', () => {
+    if (typeof gsap !== 'undefined') {
+        setupCardAnimation();
+    }
+});
