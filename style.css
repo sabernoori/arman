@@ -22,8 +22,13 @@
 }
 
 .card_back {
-    pointer-events: none;
     position: relative;
+    z-index: 1;
+    transform: translateZ(-10px);
+    pointer-events: auto;
+}
+
+.center_cards-wrapper.has-mouse-tracking:hover .card_back {
     z-index: 1;
     transform: translateZ(-10px);
 }

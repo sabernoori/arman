@@ -74,18 +74,41 @@ function setupCardAnimation() {
         const rotateY = mapRange(mouseX, 0, width, -cardSettings.rotationRange, cardSettings.rotationRange);
         const rotateX = mapRange(mouseY, 0, height, cardSettings.rotationRange, -cardSettings.rotationRange);
 
-        // Animate front card only
-        gsap.to(frontCard, {
-            rotationX: rotateX,
-            rotationY: rotateY,
-            x: (mouseX - centerX) * (cardSettings.moveRange / 100),
-            z: 10,
-            duration: 0.5,
-            ease: 'power2.out'
-        });
+        // Determine which card is being hovered
+        const hoveredCard = e.target.closest('.card_frontt, .card_back');
+        const isBackCardHovered = hoveredCard && hoveredCard.classList.contains('card_back');
 
-        // Back card animation disabled
-        // gsap.to(backCard, { ... });
+        if (isBackCardHovered) {
+            // Keep back card in place and front card slightly moved
+            gsap.to(backCard, {
+                z: -10,
+                duration: 0.5,
+                ease: 'power2.out'
+            });
+            gsap.to(frontCard, {
+                rotationX: rotateX * 0.3,
+                rotationY: rotateY * 0.3,
+                x: (mouseX - centerX) * (cardSettings.moveRange / 200),
+                z: 0,
+                duration: 0.5,
+                ease: 'power2.out'
+            });
+        } else {
+            // Regular front card animation
+            gsap.to(frontCard, {
+                rotationX: rotateX,
+                rotationY: rotateY,
+                x: (mouseX - centerX) * (cardSettings.moveRange / 100),
+                z: 10,
+                duration: 0.5,
+                ease: 'power2.out'
+            });
+            gsap.to(backCard, {
+                z: -10,
+                duration: 0.5,
+                ease: 'power2.out'
+            });
+        }
     }
 
     // Reset animation
