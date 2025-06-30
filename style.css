@@ -1,14 +1,40 @@
+/* 3D Card Animation Styles */
+.center_cards-wrapper.has-mouse-tracking {
+    will-change: transform;
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out;
+}
+
+.card_frontt,
+.card_back {
+    will-change: transform;
+    transition: transform 0.1s ease-out;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+}
+
+/* Add subtle shadow transition on hover */
+.center_cards-wrapper.has-mouse-tracking .card_frontt {
+    box-shadow: rgba(0, 0, 0, 0.1) 25px -4px 35px 0px;
+    transition: transform 0.1s ease-out, box-shadow 0.3s ease-out;
+}
+
+.center_cards-wrapper.has-mouse-tracking:hover .card_frontt {
+    box-shadow: rgba(0, 0, 0, 0.2) 35px -8px 45px 0px;
+}
+
 /*  managing responive for dashboard cards on desktop screens */
 @media (min-width: 991px) and (max-width: 1580px) {
   .overview_wrapper {
     flex-direction: row;
     flex-wrap: wrap;
   }
-  .wallet_wrapper { order: 3; width: 48%; min-width: 21rem; }
+  .wallet_wrapper { order: 3; width: 48%; min-width: 21rem;   }
   .overview_center { order: 1; width: calc(100%-2rem); min-width: none; max-width: none;}
   .profile_wrapper { order: 2; width: 48%; min-width: 21rem; }
   .center_cards-wrapper {margin-left: 6rem;}
 }
+
 
 /* Mobile Navbar opening animations */
 .nav_overlay {
@@ -50,29 +76,3 @@
   transform: translateY(0);
   transition-delay: 0.1s;
 }
-
-/* Credit Card 3D Animation Setup */
-/* .center_cards-wrapper {
-  perspective: 1000px;
-  transform-style: preserve-3d;
-  cursor: move; 
-} */
-
-/* .card_frontt, .card_back {
-  will-change: transform; 
-  transform-style: preserve-3d;
-  transition: box-shadow 0.3s ease;
-} */
-
-/* Enhanced shadows for depth */
-/* .card_frontt {
-  box-shadow: 
-    rgba(0, 0, 0, 0.05) 25px -4px 25px 0px,
-    rgba(0, 0, 0, 0.03) -5px 5px 15px 0px;
-} */
-
-/* .card_back {
-  box-shadow: 
-    rgba(0, 0, 0, 0.04) 20px -3px 20px 0px,
-    rgba(0, 0, 0, 0.02) -4px 4px 12px 0px;
-} */
