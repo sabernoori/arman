@@ -113,7 +113,39 @@ function setupCardAnimation() {
     cardWrapper.classList.add('has-mouse-tracking');
 }
 
-    // Initialize animations
+    // Test animation with click trigger
+    const profDesc = document.querySelector('.prof_desc');
+    console.log('Setting up click animation on:', profDesc);
+    
+    if (profDesc) {
+        // Add click event to trigger animation
+        profDesc.addEventListener('click', () => {
+            console.log('Element clicked, starting animation');
+            gsap.to(profDesc, {
+                color: '#FF5733',
+                scale: 1.1,
+                duration: 0.5,
+                repeat: 3,
+                yoyo: true,
+                onStart: () => {
+                    console.log('Animation started');
+                    profDesc.style.cursor = 'pointer';
+                },
+                onComplete: () => {
+                    console.log('Animation completed');
+                    gsap.to(profDesc, {
+                        color: '',
+                        scale: 1,
+                        duration: 0.3
+                    });
+                }
+            });
+        });
+    } else {
+        console.error('Could not find .prof_desc element');
+    }
+
+    // Initialize card animations
     setupCardAnimation();
 });
 
