@@ -46,14 +46,8 @@ function setupCardAnimation() {
     });
 
     // Initial state
-    gsap.set(frontCard, {
-        transformOrigin: cardSettings.transformOrigin,
-        clearProps: 'all'
-    });
-    
-    gsap.set(backCard, {
-        transformOrigin: cardSettings.transformOrigin,
-        z: -10
+    gsap.set([frontCard, backCard], {
+        transformOrigin: cardSettings.transformOrigin
     });
 
     // Create animation context
@@ -79,7 +73,6 @@ function setupCardAnimation() {
             rotationX: rotateX,
             rotationY: rotateY,
             x: (mouseX - centerX) * (cardSettings.moveRange / 100),
-            z: 10,
             duration: 0.5,
             ease: 'power2.out'
         });
@@ -98,17 +91,9 @@ function setupCardAnimation() {
             rotationY: 0,
             x: 0,
             y: 0,
-            z: 0,
             duration: 0.7,
             ease: 'power3.out',
-            clearProps: 'transform'
-        });
-        
-        // Ensure back card stays in place
-        gsap.to(backCard, {
-            z: -10,
-            duration: 0.7,
-            ease: 'power3.out'
+            clearProps: 'all' // Ensures complete reset to original position
         });
     }
 

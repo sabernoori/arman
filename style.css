@@ -5,27 +5,21 @@
     transition: none;
     perspective: 1000px;
     cursor: pointer;
-    position: relative;
-    z-index: 1;
+    transform: none !important;
 }
 
 .card_frontt {
     will-change: transform;
-    transition: all 0.5s ease-out;
+    transition: transform 0.5s ease-out;
     transform-style: preserve-3d;
     backface-visibility: hidden;
     pointer-events: none;
     transform-origin: center center;
-    position: relative;
-    z-index: 2;
-    transform: translateZ(0);
 }
 
 .card_back {
     pointer-events: none;
-    position: relative;
-    z-index: 1;
-    transform: translateZ(-10px);
+    transform: none !important;
 }
 
 @media (max-width: 991px) {
