@@ -31,7 +31,10 @@ const translations = {
         "transactionToman": "Toman",
         "paid": "Paid",
         "got": "Recevied",
-        "langDisplay": "En"
+        "langDisplay": "En",
+        "allTransactions": "All",
+        "transactionType": "Type,
+        "all": "All"
 
     },
 
@@ -66,7 +69,9 @@ const translations = {
         "transactionToman": "Toman",
         "paid": "Ödendi",
         "got": "Alındı",
-        "langDisplay": "Tr"
+        "langDisplay": "Tr",
+        "all": "All"
+
     },
 
     fa: {
@@ -101,7 +106,9 @@ const translations = {
         "paid": "پرداختی",
         "got": "دریافتی",
         "langDisplay": "Fa",
-        "allTransactions": "",
+        "allTransactions": "همه تراکنش ها",
+        "transactionType": "نوع تراکنش",
+        "all": "همه"
     }
 };
 
@@ -174,3 +181,26 @@ document.querySelectorAll('.lang_item').forEach(item => {
 updateLanguage();
 
 
+// adding attributes to the filter forms //
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get the select element
+    const select = document.getElementById("transaction-type");
+
+    if (select) {
+      // Define the translations (or keys) for each option
+      const dataI18nKeys = [
+        "all",
+        "buy",
+        "sell"
+=        // Add more keys corresponding to the options
+      ];
+
+      // Loop through each option and assign the data-i18n attribute
+      Array.from(select.options).forEach((option, index) => {
+        option.setAttribute("data-i18n", dataI18nKeys[index]);
+      });
+    }
+  });
+</script>

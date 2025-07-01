@@ -6,7 +6,7 @@ const puppeteer = require('puppeteer');
   const page = await browser.newPage();
 
   // Go to any URL you want to analyze
-  await page.goto('https://armantether.webflow.io/', { waitUntil: 'networkidle2' });
+  await page.goto('https://armantether.webflow.io/transactions', { waitUntil: 'networkidle2' });
 
   // Define the function in the browser context, then invoke it
   const structure = await page.evaluate(() => {

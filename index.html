@@ -11,6 +11,112 @@
 </head>
 <body>
     <!-- Your existing HTML content here -->
+
+
+
+    <style>
+  .filter-select-wrapper {
+    font-family: Rokh;
+    position: relative;
+    width: 12rem;
+    max-width: 300px;
+    font-family: sans-serif;
+  }
+
+  .filter-select-toggle {
+    border: 1px solid #ccc;
+    padding: 10px;
+    background: white;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .filter-select-toggle.open {
+    border-color: #007bff;
+  }
+
+  .filter-select-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border: 1px solid #ccc;
+    background: white;
+    display: none;
+    z-index: 1000;
+  }
+
+  .filter-select-options.open {
+    display: block;
+  }
+
+  .filter-select-option {
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .filter-select-option:hover {
+    background-color: #f0f0f0;
+  }
+
+  .filter-select-option.selected {
+    background-color: #e0f7fa;
+  }
+</style>
+
+<div class="filter-select-wrapper" data-filter-select>
+  <div class="filter-select-toggle" data-toggle>Select an option</div>
+  <div class="filter-select-options" data-options>
+    <div class="filter-select-option" data-value="option1" data-i18n="option1-text">Option 1</div>
+    <div class="filter-select-option" data-value="option2" data-i18n="option2-text">Option 2</div>
+    <div class="filter-select-option" data-value="option3" data-i18n="option3-text">Option 3</div>
+  </div>
+  <input type="hidden" name="filterSelectValue">
+</div>
+
+<script>
+  document.querySelectorAll('[data-filter-select]').forEach(function(wrapper) {
+    const toggle = wrapper.querySelector('[data-toggle]');
+    const options = wrapper.querySelector('[data-options]');
+    const hiddenInput = wrapper.querySelector('input[type="hidden"]');
+
+    toggle.addEventListener('click', function() {
+      toggle.classList.toggle('open');
+      options.classList.toggle('open');
+    });
+
+    options.querySelectorAll('.filter-select-option').forEach(function(option) {
+      option.addEventListener('click', function() {
+        options.querySelectorAll('.filter-select-option').forEach(o => o.classList.remove('selected'));
+        option.classList.add('selected');
+
+        const value = option.getAttribute('data-value');
+        const text = option.textContent;
+
+        hiddenInput.value = value;
+        toggle.textContent = text;
+
+        toggle.classList.remove('open');
+        options.classList.remove('open');
+      });
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!wrapper.contains(e.target)) {
+        toggle.classList.remove('open');
+        options.classList.remove('open');
+      }
+    });
+  });
+</script>
+
+
+
+
+
+
+
     
     <script src="script.js"></script>
     <script src="translate.js"></script>
