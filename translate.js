@@ -33,7 +33,7 @@ const translations = {
         "got": "Recevied",
         "langDisplay": "En",
         "allTransactions": "All",
-        "transactionType": "Type,
+        "transactionType": "Type",
         "all": "All"
 
     },

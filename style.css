@@ -259,3 +259,59 @@
 .btn_small:hover {
   transform: scale(1.1);
 }
+
+
+.body {
+  font-weight: 600;
+}
+
+.radio-button {
+  margin-bottom: 0px;
+  padding: 0.5rem 1rem;
+  border-style: solid;
+  border-width: 1px;
+  border-top-color: var(--colors--text-menu-inactive);
+  border-right-color: var(--colors--text-menu-inactive);
+  border-bottom-color: var(--colors--text-menu-inactive);
+  border-left-color: var(--colors--text-menu-inactive);
+  border-radius: 4rem;
+}
+
+.radio-button.is-eng {
+  transition-property: color, border-color, background-color;
+  transition-duration: 300ms, 300ms, 300ms;
+  transition-timing-function: ease, ease, ease;
+  font-family: var(--english-font);
+  cursor: pointer;
+}
+
+.body {
+  font-weight: 600;
+}
+
+.radio-button {
+  margin-bottom: 0px;
+  padding: 0.5rem 1rem;
+  border-style: solid;
+  border-width: 1px;
+  border-top-color: var(--colors--text-menu-inactive);
+  border-right-color: var(--colors--text-menu-inactive);
+  border-bottom-color: var(--colors--text-menu-inactive);
+  border-left-color: var(--colors--text-menu-inactive);
+  border-radius: 4rem;
+}
+
+.radio-button.is-eng {
+  transition-property: color, border-color, background-color;
+  transition-duration: 300ms, 300ms, 300ms;
+  transition-timing-function: ease, ease, ease;
+  font-family: var(--english-font);
+  cursor: pointer;
+}
+
+
+
+.radio-button.is-eng:active {
+  border-color: var(--colors--green-light1);
+  background-color: var(--colors--green-light1);
+}

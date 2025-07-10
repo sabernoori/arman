@@ -174,3 +174,37 @@
 .btn_small:hover {
   transform: scale(1.1);
 }
+
+
+/* select box styles  */
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: relative;
+  width: 12rem;
+  height: 3rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--colors--text-menu-inactive);
+  border-radius: 0.5rem;
+  background-color: var(--colors--white);
+  color: var(--colors--text-dark);
+  font-size: 1rem;
+  cursor: pointer;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23666" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+}
+
+select:focus {
+  outline: none;
+  border-color: var(--colors--text-menu-hover);
+}
+
+option {
+  padding: 0.75rem 0.5rem;
+  background-color: var(--colors--white);
+  color: var(--colors--text-dark);
+}
