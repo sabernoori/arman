@@ -209,31 +209,7 @@ option {
   color: var(--colors--text-dark);
 }
 
-/* Custom radio button checked state styles */
-.radio-button.is-checked {
-    border-color: var(--colors--green-light1);
-    background-color: var(--colors--green-light1);
-    color: var(--colors--green-text);
-}
 
-.radio-button.is-checked .radio-text {
-    color: var(--colors--green-text);
-}
-
-/* Smooth transition for checked state */
-.radio-button {
-    transition: border-color 0.3s ease,
-                background-color 0.3s ease,
-                color 0.3s ease;
-}
-
-/* Ensure the radio button maintains its style when checked and hovered */
-.radio-button.is-eng.is-checked:hover,
-.radio-button.is-eng.is-checked.-wfp-hover {
-    border-color: var(--colors--green-light1);
-    background-color: var(--colors--green-light1);
-    color: var(--colors--green-text);
-}
 
 
 
