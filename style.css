@@ -311,7 +311,7 @@
 
 
 
-.radio-button.is-eng:active {
+.radio-button.is-eng:checked {
   border-color: var(--colors--green-light1);
   background-color: var(--colors--green-light1);
 }
