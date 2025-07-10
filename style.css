@@ -311,7 +311,11 @@
 
 
 
-.radio-button.is-eng:checked {
-  border-color: var(--colors--green-light1);
+.radio-input:checked + .radio-text {
+  /* You can apply is-active styles here or on the parent using :has() */
   background-color: var(--colors--green-light1);
+  color: var(--colors--green-text);
+  border-color: var(--colors--green-light1);
+  border-radius: 4rem;
+  padding: 0.5rem 1rem;
 }
