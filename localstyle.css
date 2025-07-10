@@ -208,3 +208,42 @@ option {
   background-color: var(--colors--white);
   color: var(--colors--text-dark);
 }
+
+
+
+
+/* custom radio button inputs */
+
+.radio-input {
+  display: none;
+}
+
+.radio-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 4rem;
+  border: 1px solid var(--colors--text-menu-inactive);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.radio-button.is-eng {
+  font-family: var(--english-font);
+}
+
+/* Hover effect */
+.radio-button.is-eng:hover {
+  border-color: var(--colors--green-light1);
+  background-color: rgba(250, 255, 202, 0.5);
+  color: var(--colors--green-text);
+}
+
+/* ✅ SELECTED STATE */
+.radio-input:checked + .radio-label {
+  border-radius: 0rem;
+  /* padding: 0.5rem 1rem; */
+  /* background-color: var(--colors--green-light1);
+  color: var(--colors--green-text);
+  border: 1px solid var(--colors--green-light1); */
+}
