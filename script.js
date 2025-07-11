@@ -7,12 +7,17 @@ document.addEventListener('DOMContentLoaded', function() {
     function openMenu() {
         overlay.classList.add('is-active');
         mobileMenu.classList.add('is-active');
+        overlay.style.pointerEvents = 'auto';
     }
 
     function closeMenu() {
         overlay.classList.remove('is-active');
         mobileMenu.classList.remove('is-active');
+        overlay.style.pointerEvents = 'none';
     }
+
+    // Set initial pointer-events state
+    overlay.style.pointerEvents = 'none';
 
     menuIcon.addEventListener('click', openMenu);
     closeOverlay.addEventListener('click', closeMenu);
