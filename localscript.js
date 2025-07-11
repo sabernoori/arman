@@ -89,48 +89,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ~! end calculation and updating price variables in buy form
 
-// ~ Handle radio button selection
-document.addEventListener('DOMContentLoaded', () => {
-    // Function to handle radio button state changes
-    function handleRadioChange(radioBtn, input) {
-        const groupIsolate = radioBtn.getAttribute('groupisolate');
-        if (!groupIsolate) return;
-
-        // Remove checked class from all radios in the same group
-        const groupRadios = document.querySelectorAll(`[groupisolate="${groupIsolate}"]`);
-        groupRadios.forEach(rb => rb.classList.remove('is-checked'));
-
-        // Add checked class to the selected radio
-        if (input.checked) {
-            radioBtn.classList.add('is-checked');
-        }
-    }
-
-    // Initialize and attach event listeners to all radio buttons
-    document.querySelectorAll('.radio-button').forEach(radioBtn => {
-        const input = radioBtn.querySelector('input[type="radio"]');
-        if (!input) return;
-
-        // Set initial state
-        if (input.checked) {
-            handleRadioChange(radioBtn, input);
-        }
-
-        // Handle click on the radio button container
-        radioBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            input.checked = true;
-            handleRadioChange(radioBtn, input);
-        });
-
-        // Handle direct input changes
-        input.addEventListener('change', () => {
-            handleRadioChange(radioBtn, input);
-        });
-    });
-});
-// ~! End Handle radio button selection
-
 
