@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         overlay.classList.add('is-active');
         mobileMenu.classList.add('is-active');
     }
+    
 
     function closeMenu() {
         overlay.classList.remove('is-active');
