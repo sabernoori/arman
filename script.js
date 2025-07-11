@@ -57,6 +57,51 @@ document.addEventListener('DOMContentLoaded', function() {
     });
  // ~! End Handle radio button selection
 
+// ~ Handle clipboard copy functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const copyElements = document.querySelectorAll('.copy');
+
+    copyElements.forEach(element => {
+        element.addEventListener('click', () => {
+            const textToCopy = element.getAttribute('clipboard');
+            const copyIcon = element.querySelector('.copysvg');
+            
+            if (textToCopy) {
+                navigator.clipboard.writeText(textToCopy)
+                    .then(() => {
+                        // Create temporary feedback element
+                        const feedback = document.createElement('span');
+                        feedback.textContent = 'Copied!';
+                        feedback.style.position = 'absolute';
+                        feedback.style.left = '50%';
+                        feedback.style.top = '50%';
+                        feedback.style.transform = 'translate(-50%, -50%)';
+                        element.style.position = 'relative';
+                        
+                        // Hide the copy icon
+                        if (copyIcon) {
+                            copyIcon.style.display = 'none';
+                        }
+                        
+                        element.appendChild(feedback);
+
+                        // Remove feedback and show icon after animation
+                        setTimeout(() => {
+                            element.removeChild(feedback);
+                            if (copyIcon) {
+                                copyIcon.style.display = 'block';
+                            }
+                        }, 1000);
+                    })
+                    .catch(err => {
+                        console.error('Failed to copy text:', err);
+                    });
+            }
+        });
+    });
+});
+// ~! end clipboard copy functionality
+
 
 
 

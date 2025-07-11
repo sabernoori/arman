@@ -71,5 +71,3 @@ document.addEventListener('DOMContentLoaded', () => {
 // ~! end calculation and updating price variables in buy form
 
 
-
-
