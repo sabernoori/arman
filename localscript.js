@@ -39,6 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const tetherInput = document.querySelector('input[name="tetherAmount"]');
     const errorDisplay = document.querySelector('.deal_amount-error');
     const submitButton = document.querySelector('button[type="submit"]');
+    
+    // Handle network selection validation
+    const networkRadios = document.querySelectorAll('input[name="network"]');
+    const networkErrorDisplay = document.querySelector('.deal_network-error');
 
     function updateErrorState(amount) {
         const isUnderMinimum = amount < priceConfig.minOrder;
@@ -54,17 +58,32 @@ document.addEventListener('DOMContentLoaded', () => {
             updateErrorState(amount);
         });
 
-        // Prevent form submission if amount is under minimum
+        // Prevent form submission if amount is under minimum or network not selected
         const form = tetherInput.closest('form');
         if (form) {
             form.addEventListener('submit', (e) => {
                 const amount = parseFloat(tetherInput.value) || 0;
+                const networkSelected = Array.from(networkRadios).some(radio => radio.checked);
+                
                 console.log('Form submit attempt with amount:', amount, 'Min required:', priceConfig.minOrder);
+                console.log('Network selected:', networkSelected);
+                
+                // Check if amount is below minimum
                 if (amount < priceConfig.minOrder) {
                     e.preventDefault();
                     e.stopPropagation();
                     e.stopImmediatePropagation();
                     console.log('Form submission prevented - amount below minimum');
+                    return false;
+                }
+                
+                // Check if network is not selected
+                if (!networkSelected) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    e.stopImmediatePropagation();
+                    networkErrorDisplay.style.display = 'block';
+                    console.log('Form submission prevented - no network selected');
                     return false;
                 }
             });
@@ -74,6 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (submitButton) {
             submitButton.addEventListener('click', (e) => {
                 const amount = parseFloat(tetherInput.value) || 0;
+                const networkSelected = Array.from(networkRadios).some(radio => radio.checked);
+                
                 if (amount < priceConfig.minOrder) {
                     e.preventDefault();
                     e.stopPropagation();
@@ -81,9 +102,27 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.log('Submit button click prevented - amount below minimum');
                     return false;
                 }
+                
+                if (!networkSelected) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    e.stopImmediatePropagation();
+                    networkErrorDisplay.style.display = 'block';
+                    console.log('Submit button click prevented - no network selected');
+                    return false;
+                }
             });
         }
     }
+    
+    // Hide network error when a network option is selected
+    networkRadios.forEach(radio => {
+        radio.addEventListener('change', () => {
+            if (radio.checked) {
+                networkErrorDisplay.style.display = 'none';
+            }
+        });
+    });
 
 });
 
@@ -94,7 +133,7 @@ const radioButtons = document.querySelectorAll('.radio-button');
 
 radioButtons.forEach(radioBtn => {
     const input = radioBtn.querySelector('input[type="radio"]');
-    const groupName = input.getAttribute('groupisolate');
+    const groupName = radioBtn.getAttribute('groupisolate');
 
     // Handle click on the radio-button div
     radioBtn.addEventListener('click', (e) => {
@@ -111,9 +150,11 @@ radioButtons.forEach(radioBtn => {
     // Add checked class when radio is selected
     input.addEventListener('change', () => {
         // Remove checked class only from radio buttons in the same group
-        document.querySelectorAll(`.radio-button input[groupisolate="${groupName}"]`).forEach(groupInput => {
-            groupInput.closest('.radio-button').classList.remove('is-checked');
-        });
+        if (groupName) {
+            document.querySelectorAll(`label[groupisolate="${groupName}"]`).forEach(groupLabel => {
+                groupLabel.classList.remove('is-checked');
+            });
+        }
         
         // Add checked class to selected radio button
         if (input.checked) {
