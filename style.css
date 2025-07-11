@@ -24,11 +24,9 @@
     height: 100%;
     transition: visibility 0s linear 0.5s, opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 999;
-    pointer-events: none;
 }
 
 .nav_overlay.is-active {
-    pointer-events: auto;
     visibility: visible;
     opacity: 1;
     transition-delay: 0s;
