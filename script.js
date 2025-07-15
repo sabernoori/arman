@@ -26,7 +26,9 @@ document.addEventListener('DOMContentLoaded', function() {
 // Price calculation variables
 const priceConfig = {
     momentPrice: 85000,  // Base price from API
+    momentPriceSell: 84750,  //Base Price for Selling from API
     exchangeFee: 10000,  // Fixed exchange fee
+    exchangeFeeSell: 8000,  // Fixed exchange fee for sell
     networkFeeRate: 0.6,  // Network fee rate from API
     minOrder: 10,        // Minimum order amount
     minOrderSell: 5,        // Minimum order amount for selling
@@ -49,8 +51,10 @@ function calculatePrices(tetherAmount) {
 function updatePriceDisplays(prices) {
     // Update elements with custom attributes
     document.querySelector('[data-wf-exchange-fee]').textContent = priceConfig.exchangeFee.toLocaleString();
+    document.querySelector('[data-wf-exchange-fee-sell]').textContent = priceConfig.exchangeFeeSell.toLocaleString();
     document.querySelector('[data-wf-network-fee]').textContent = prices.networkFee.toLocaleString();
     document.querySelector('[data-wf-moment-price]').textContent = priceConfig.momentPrice.toLocaleString();
+    document.querySelector('[data-wf-moment-price-sell]').textContent = priceConfig.momentPriceSell.toLocaleString();
     document.querySelector('[min-order-buy]').textContent = priceConfig.minOrder.toLocaleString();
     document.querySelector('[min-order-sell]').textContent = priceConfig.minOrderSell.toLocaleString();
     document.querySelector('[user-total-balance]').textContent = priceConfig.userBalance.toLocaleString();
