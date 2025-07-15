@@ -49,6 +49,7 @@ function updatePriceDisplays(prices) {
     document.querySelector('[data-wf-exchange-fee]').textContent = priceConfig.exchangeFee.toLocaleString();
     document.querySelector('[data-wf-network-fee]').textContent = prices.networkFee.toLocaleString();
     document.querySelector('[data-wf-moment-price]').textContent = priceConfig.momentPrice.toLocaleString();
+    document.querySelector('[min-order-buy]').textContent = priceConfig.minOrder.toLocaleString();
 
     document.querySelector('[data-wf-total-price]').textContent = prices.totalPrice.toLocaleString();
 }

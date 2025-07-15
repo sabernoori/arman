@@ -182,25 +182,3 @@ updateLanguage();
 
 
 // adding attributes to the filter forms //
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // Get the select element
-    const select = document.getElementById("transaction-type");
-
-    if (select) {
-      // Define the translations (or keys) for each option
-      const dataI18nKeys = [
-        "all",
-        "buy",
-        "sell"
-=        // Add more keys corresponding to the options
-      ];
-
-      // Loop through each option and assign the data-i18n attribute
-      Array.from(select.options).forEach((option, index) => {
-        option.setAttribute("data-i18n", dataI18nKeys[index]);
-      });
-    }
-  });
-</script>
