@@ -381,3 +381,44 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ~! end calculation and updating price variables in buy form
+
+// ~ Handle radio button selection
+const radioButtons = document.querySelectorAll('.radio-button');
+
+radioButtons.forEach(radioBtn => {
+    const input = radioBtn.querySelector('input[type="radio"]');
+    const groupName = radioBtn.getAttribute('groupisolate');
+
+    // Handle click on the radio-button div
+    radioBtn.addEventListener('click', (e) => {
+        // Prevent default to handle the click ourselves
+        e.preventDefault();
+        
+        // Trigger the actual radio input
+        input.checked = true;
+        
+        // Trigger change event manually
+        input.dispatchEvent(new Event('change'));
+    });
+
+    // Add checked class when radio is selected
+    input.addEventListener('change', () => {
+        // Remove checked class only from radio buttons in the same group
+        if (groupName) {
+            document.querySelectorAll(`label[groupisolate="${groupName}"]`).forEach(groupLabel => {
+                groupLabel.classList.remove('is-checked');
+            });
+        }
+        
+        // Add checked class to selected radio button
+        if (input.checked) {
+            radioBtn.classList.add('is-checked');
+        }
+    });
+
+    // Initial state check
+    if (input.checked) {
+        radioBtn.classList.add('is-checked');
+    }
+});
+// ~! End Handle radio button selection
