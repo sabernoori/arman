@@ -29,7 +29,9 @@ const priceConfig = {
     exchangeFee: 10000,  // Fixed exchange fee
     networkFeeRate: 0.6,  // Network fee rate from API
     minOrder: 10,        // Minimum order amount
-    minWalletLength: 15  // Minimum wallet address length
+    minOrderSell: 5,        // Minimum order amount for selling
+    minWalletLength: 15,  // Minimum wallet address length
+    userBalance: 596 //user's current balance
 };
 
 // Calculate all prices based on tether amount
@@ -50,6 +52,8 @@ function updatePriceDisplays(prices) {
     document.querySelector('[data-wf-network-fee]').textContent = prices.networkFee.toLocaleString();
     document.querySelector('[data-wf-moment-price]').textContent = priceConfig.momentPrice.toLocaleString();
     document.querySelector('[min-order-buy]').textContent = priceConfig.minOrder.toLocaleString();
+    document.querySelector('[min-order-sell]').textContent = priceConfig.minOrderSell.toLocaleString();
+    document.querySelector('[user-total-balance]').textContent = priceConfig.userBalance.toLocaleString();
 
     document.querySelector('[data-wf-total-price]').textContent = prices.totalPrice.toLocaleString();
 }
