@@ -834,5 +834,19 @@ radioButtons.forEach(radioBtn => {
 // ~! End Handle radio button selection
 
 
+// ~ start numerical keyboard for mobile
+// Set numerical keyboard for tether amount inputs
+const tetherAmountInput = document.querySelector('input[name="tetherAmount"]');
+const tetherAmountSellInput = document.querySelector('input[name="tetherAmountSell"]');
 
+if (tetherAmountInput) {
+    tetherAmountInput.setAttribute('inputmode', 'numeric');
+    tetherAmountInput.setAttribute('pattern', '[0-9]*');
+}
+
+if (tetherAmountSellInput) {
+    tetherAmountSellInput.setAttribute('inputmode', 'numeric');
+    tetherAmountSellInput.setAttribute('pattern', '[0-9]*');
+}
+// ~! end numerical keyboard for mobile
 
