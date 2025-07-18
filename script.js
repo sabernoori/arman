@@ -214,13 +214,8 @@ function updatePriceDisplays(prices) {
         }
     }
     
-    document.querySelectorAll('[min-order-buy]').forEach(element => {
-        element.textContent = priceConfig.minOrder.toLocaleString();
-    });
-
+    document.querySelector('[min-order-buy]').textContent = priceConfig.minOrder.toLocaleString();
     document.querySelector('[data-wf-sell-amount]').textContent = priceConfig.sellAmount.toLocaleString();
-
-    
     document.querySelector('[min-order-sell]').textContent = priceConfig.minOrderSell.toLocaleString();
     document.querySelector('[user-total-balance]').textContent = priceConfig.userBalance.toLocaleString();
 }
