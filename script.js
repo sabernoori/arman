@@ -54,13 +54,17 @@ document.addEventListener('input', function(e) {
             e.target.value = convertedValue;
             // Restore cursor position
             e.target.setSelectionRange(cursorPosition, cursorPosition);
+            
+            // Dispatch a new input event to trigger validation and calculations
+            const newInputEvent = new Event('input', { bubbles: true });
+            e.target.dispatchEvent(newInputEvent);
         }
     }
-});
+}, true); // Use capture phase to run before other input handlers
 // ~! end persian/arabic number conversion
 
 
-
+ 
 
 
 
