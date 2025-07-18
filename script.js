@@ -217,10 +217,11 @@ function updatePriceDisplays(prices) {
     document.querySelectorAll('[min-order-buy]').forEach(element => {
         element.textContent = priceConfig.minOrder.toLocaleString();
     });
-    document.querySelectorAll('[min-order-sell]').forEach(element => {
-        element.textContent = priceConfig.minOrderSell.toLocaleString();
-    });
+
     document.querySelector('[data-wf-sell-amount]').textContent = priceConfig.sellAmount.toLocaleString();
+
+    
+    document.querySelector('[min-order-sell]').textContent = priceConfig.minOrderSell.toLocaleString();
     document.querySelector('[user-total-balance]').textContent = priceConfig.userBalance.toLocaleString();
 }
 
@@ -238,7 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const errorDisplay = document.querySelector('.deal_amount-error');
     const submitButton = document.querySelector('button[type="submit"]');
     
-    // Handle tether amount input for sell form'
+    // Handle tether amount input for sell form
     const tetherSellInput = document.querySelector('input[name="tetherAmountSell"]');
     
     // Handle network selection validation
@@ -251,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateErrorState(amount) {
         const isUnderMinimum = amount < priceConfig.minOrder;
-        errorDisplay.style.display = isUnderMinimum ? 'flex' : 'none';
+        errorDisplay.style.display = isUnderMinimum ? 'block' : 'none';
         return isUnderMinimum;
     }
 
@@ -293,7 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     e.preventDefault();
                     e.stopPropagation();
                     e.stopImmediatePropagation();
-                    if (errorDisplaySell) errorDisplaySell.style.display = 'flex';
+                    if (errorDisplaySell) errorDisplaySell.style.display = 'block';
                     return false;
                 }
                 
