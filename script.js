@@ -63,6 +63,7 @@ document.addEventListener('input', function(e) {
 
 
 
+
 // ~ Handle clipboard copy functionality
 document.addEventListener('DOMContentLoaded', () => {
     const copyElements = document.querySelectorAll('.copy');
