@@ -93,6 +93,7 @@ const priceConfig = {
     minOrderSell: 5,        // Minimum order amount for selling
     minWalletLength: 15,  // Minimum wallet address length
     userBalance: 596, //user's current balance
+    sellAmount: 300,
     liraToRialRate: 2350,  // 1 Turkish Lira = 2,350 Iranian Toman (will be updated from API)
     currentCurrencyBuy: 'rial',  // Track current selected currency for buy form
     currentCurrencySell: 'rial'  // Track current selected currency for sell form
@@ -213,8 +214,13 @@ function updatePriceDisplays(prices) {
         }
     }
     
-    document.querySelector('[min-order-buy]').textContent = priceConfig.minOrder.toLocaleString();
-    document.querySelector('[min-order-sell]').textContent = priceConfig.minOrderSell.toLocaleString();
+    document.querySelectorAll('[min-order-buy]').forEach(element => {
+        element.textContent = priceConfig.minOrder.toLocaleString();
+    });
+    document.querySelectorAll('[min-order-sell]').forEach(element => {
+        element.textContent = priceConfig.minOrderSell.toLocaleString();
+    });
+    document.querySelector('[data-wf-sell-amount]').textContent = priceConfig.sellAmount.toLocaleString();
     document.querySelector('[user-total-balance]').textContent = priceConfig.userBalance.toLocaleString();
 }
 
