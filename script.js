@@ -848,5 +848,61 @@ if (tetherAmountSellInput) {
     tetherAmountSellInput.setAttribute('inputmode', 'numeric');
     tetherAmountSellInput.setAttribute('pattern', '[0-9]*');
 }
+
+// Persian/Arabic number conversion for tether inputs
+function convertPersianArabicNumbers(str) {
+    const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+    const arabicNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+    const englishNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    
+    let result = str;
+    
+    // Convert Persian numbers
+    for (let i = 0; i < persianNumbers.length; i++) {
+        result = result.replace(new RegExp(persianNumbers[i], 'g'), englishNumbers[i]);
+    }
+    
+    // Convert Arabic numbers
+    for (let i = 0; i < arabicNumbers.length; i++) {
+        result = result.replace(new RegExp(arabicNumbers[i], 'g'), englishNumbers[i]);
+    }
+    
+    return result;
+}
+
+// Add conversion listeners to tether inputs
+if (tetherAmountInput) {
+    tetherAmountInput.addEventListener('input', function(e) {
+        const originalValue = e.target.value;
+        const convertedValue = convertPersianArabicNumbers(originalValue);
+        
+        if (originalValue !== convertedValue) {
+            const cursorPosition = e.target.selectionStart;
+            e.target.value = convertedValue;
+            e.target.setSelectionRange(cursorPosition, cursorPosition);
+            
+            // Dispatch new input event for validation
+            const newInputEvent = new Event('input', { bubbles: true });
+            e.target.dispatchEvent(newInputEvent);
+        }
+    }, true);
+}
+
+if (tetherAmountSellInput) {
+    tetherAmountSellInput.addEventListener('input', function(e) {
+        const originalValue = e.target.value;
+        const convertedValue = convertPersianArabicNumbers(originalValue);
+        
+        if (originalValue !== convertedValue) {
+            const cursorPosition = e.target.selectionStart;
+            e.target.value = convertedValue;
+            e.target.setSelectionRange(cursorPosition, cursorPosition);
+            
+            // Dispatch new input event for validation
+            const newInputEvent = new Event('input', { bubbles: true });
+            e.target.dispatchEvent(newInputEvent);
+        }
+    }, true);
+}
 // ~! end numerical keyboard for mobile
 
