@@ -850,56 +850,47 @@ if (tetherAmountSellInput) {
 }
 // ~! end numerical keyboard for mobile
 
-// ~ start real-time keyboard language error detection
-function hasPersianArabicNumbers(text) {
+
+// ~ start keyboard language error detection
+// Function to detect Persian/Arabic numbers
+function containsPersianArabicNumbers(str) {
     const persianNumbers = /[۰-۹]/;
     const arabicNumbers = /[٠-٩]/;
-    return persianNumbers.test(text) || arabicNumbers.test(text);
+    return persianNumbers.test(str) || arabicNumbers.test(str);
 }
 
-function showKeyboardError() {
-    const keyboardError = document.querySelector('.keyboard_error');
-    if (keyboardError) {
-        keyboardError.style.display = 'block';
-    }
-}
+// Get keyboard error wrapper element
+const keyboardErrorWrapper = document.querySelector('.keyboard_error-wrapper');
 
-function hideKeyboardError() {
-    const keyboardError = document.querySelector('.keyboard_error');
-    if (keyboardError) {
-        keyboardError.style.display = 'none';
-    }
-}
-
-// Add event listeners to all input fields for real-time detection
-document.addEventListener('DOMContentLoaded', () => {
-    const allInputs = document.querySelectorAll('input[type="text"], input[type="number"], input');
-    
-    allInputs.forEach(input => {
-        // Listen for input events to detect Persian/Arabic numbers
-        input.addEventListener('input', (e) => {
-            if (hasPersianArabicNumbers(e.target.value)) {
-                showKeyboardError();
-            } else {
-                hideKeyboardError();
-            }
-        });
+// Add keydown listener for immediate detection of Persian/Arabic keys
+document.addEventListener('keydown', function(e) {
+    if (e.target.tagName === 'INPUT' && (e.target.type === 'text' || e.target.type === 'number')) {
+        // Check if the pressed key is a Persian/Arabic number
+        const persianArabicKeys = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹', '٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
         
-        // Listen for keydown events for immediate detection
-        input.addEventListener('keydown', (e) => {
-            // Check if the pressed key is a Persian or Arabic number
-            if (hasPersianArabicNumbers(e.key)) {
-                showKeyboardError();
+        if (persianArabicKeys.includes(e.key)) {
+            if (keyboardErrorWrapper) {
+                keyboardErrorWrapper.style.display = 'block';
             }
-        });
+        }
+    }
+}, true); // Use capture phase for immediate detection
+
+// Add input listener to hide error when keyboard language changes
+document.addEventListener('input', function(e) {
+    if (e.target.tagName === 'INPUT' && (e.target.type === 'text' || e.target.type === 'number')) {
+        const inputValue = e.target.value;
         
-        // Hide error when input is focused and becomes empty or contains only English characters
-        input.addEventListener('focus', () => {
-            if (!hasPersianArabicNumbers(input.value)) {
-                hideKeyboardError();
+        // Hide error if no Persian/Arabic numbers are found (keyboard language changed)
+        if (!containsPersianArabicNumbers(inputValue)) {
+            if (keyboardErrorWrapper) {
+                keyboardErrorWrapper.style.display = 'none';
             }
-        });
-    });
-});
-// ~! end real-time keyboard language error detection
+        }
+    }
+}, true); // Use capture phase
+// ~! end keyboard language error detection
+
+
+```
 
