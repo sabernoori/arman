@@ -238,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const errorDisplay = document.querySelector('.deal_amount-error');
     const submitButton = document.querySelector('button[type="submit"]');
     
-    // Handle tether amount input for sell form
+    // Handle tether amount input for sell form'
     const tetherSellInput = document.querySelector('input[name="tetherAmountSell"]');
     
     // Handle network selection validation
@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateErrorState(amount) {
         const isUnderMinimum = amount < priceConfig.minOrder;
-        errorDisplay.style.display = isUnderMinimum ? 'block' : 'none';
+        errorDisplay.style.display = isUnderMinimum ? 'flex' : 'none';
         return isUnderMinimum;
     }
 
@@ -293,7 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     e.preventDefault();
                     e.stopPropagation();
                     e.stopImmediatePropagation();
-                    if (errorDisplaySell) errorDisplaySell.style.display = 'block';
+                    if (errorDisplaySell) errorDisplaySell.style.display = 'flex';
                     return false;
                 }
                 
