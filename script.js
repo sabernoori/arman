@@ -22,6 +22,43 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+// ~ start persian/arabic number conversion
+function convertPersianArabicToEnglish(str) {
+    const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+    const arabicNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+    const englishNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    
+    let result = str;
+    
+    // Convert Persian numbers
+    for (let i = 0; i < persianNumbers.length; i++) {
+        result = result.replace(new RegExp(persianNumbers[i], 'g'), englishNumbers[i]);
+    }
+    
+    // Convert Arabic numbers
+    for (let i = 0; i < arabicNumbers.length; i++) {
+        result = result.replace(new RegExp(arabicNumbers[i], 'g'), englishNumbers[i]);
+    }
+    
+    return result;
+}
+
+// Apply conversion to all number input fields
+document.addEventListener('input', function(e) {
+    if (e.target.type === 'number' || e.target.type === 'text') {
+        const originalValue = e.target.value;
+        const convertedValue = convertPersianArabicToEnglish(originalValue);
+        
+        if (originalValue !== convertedValue) {
+            const cursorPosition = e.target.selectionStart;
+            e.target.value = convertedValue;
+            // Restore cursor position
+            e.target.setSelectionRange(cursorPosition, cursorPosition);
+        }
+    }
+});
+// ~! end persian/arabic number conversion
+
 
 
 
@@ -836,43 +873,6 @@ radioButtons.forEach(radioBtn => {
 });
 // ~! End Handle radio button selection
 
-
-// ~ start persian/arabic number conversion
-function convertPersianArabicToEnglish(str) {
-    const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
-    const arabicNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
-    const englishNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-    
-    let result = str;
-    
-    // Convert Persian numbers
-    for (let i = 0; i < persianNumbers.length; i++) {
-        result = result.replace(new RegExp(persianNumbers[i], 'g'), englishNumbers[i]);
-    }
-    
-    // Convert Arabic numbers
-    for (let i = 0; i < arabicNumbers.length; i++) {
-        result = result.replace(new RegExp(arabicNumbers[i], 'g'), englishNumbers[i]);
-    }
-    
-    return result;
-}
-
-// Apply conversion to all number input fields
-document.addEventListener('input', function(e) {
-    if (e.target.type === 'number' || e.target.type === 'text') {
-        const originalValue = e.target.value;
-        const convertedValue = convertPersianArabicToEnglish(originalValue);
-        
-        if (originalValue !== convertedValue) {
-            const cursorPosition = e.target.selectionStart;
-            e.target.value = convertedValue;
-            // Restore cursor position
-            e.target.setSelectionRange(cursorPosition, cursorPosition);
-        }
-    }
-});
-// ~! end persian/arabic number conversion
 
 
 
