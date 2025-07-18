@@ -850,47 +850,4 @@ if (tetherAmountSellInput) {
 }
 // ~! end numerical keyboard for mobile
 
-
-// ~ start keyboard language error detection
-// Function to detect Persian/Arabic numbers
-function containsPersianArabicNumbers(str) {
-    const persianNumbers = /[۰-۹]/;
-    const arabicNumbers = /[٠-٩]/;
-    return persianNumbers.test(str) || arabicNumbers.test(str);
-}
-
-// Get keyboard error wrapper element
-const keyboardErrorWrapper = document.querySelector('.keyboard_error-wrapper');
-
-// Add keydown listener for immediate detection of Persian/Arabic keys
-document.addEventListener('keydown', function(e) {
-    if (e.target.tagName === 'INPUT' && (e.target.type === 'text' || e.target.type === 'number')) {
-        // Check if the pressed key is a Persian/Arabic number
-        const persianArabicKeys = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹', '٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
-        
-        if (persianArabicKeys.includes(e.key)) {
-            if (keyboardErrorWrapper) {
-                keyboardErrorWrapper.style.display = 'block';
-            }
-        }
-    }
-}, true); // Use capture phase for immediate detection
-
-// Add input listener to hide error when keyboard language changes
-document.addEventListener('input', function(e) {
-    if (e.target.tagName === 'INPUT' && (e.target.type === 'text' || e.target.type === 'number')) {
-        const inputValue = e.target.value;
-        
-        // Hide error if no Persian/Arabic numbers are found (keyboard language changed)
-        if (!containsPersianArabicNumbers(inputValue)) {
-            if (keyboardErrorWrapper) {
-                keyboardErrorWrapper.style.display = 'none';
-            }
-        }
-    }
-}, true); // Use capture phase
-// ~! end keyboard language error detection
-
-
-```
-
+ 
