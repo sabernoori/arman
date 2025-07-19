@@ -766,6 +766,7 @@ function updateCurrencyDisplayBuy(moneyUnit) {
 // ~! end currency display update functionality
 
 // ~ Handle radio button selection
+// Handle existing radio-button class elements
 const radioButtons = document.querySelectorAll('.radio-button');
 
 radioButtons.forEach(radioBtn => {
@@ -831,6 +832,50 @@ radioButtons.forEach(radioBtn => {
         }
     }
 });
+
+// Generic radio button handling for any radio input structure
+const allRadioInputs = document.querySelectorAll('input[type="radio"]');
+
+allRadioInputs.forEach(radioInput => {
+    const parentLabel = radioInput.closest('label');
+    
+    // Skip if this radio is already handled by radio-button class
+    if (parentLabel && parentLabel.classList.contains('radio-button')) {
+        return;
+    }
+    
+    // Handle defaultselection attribute
+    if (radioInput.hasAttribute('defaultselection')) {
+        radioInput.checked = true;
+        if (parentLabel) {
+            parentLabel.classList.add('is-checked');
+        }
+    }
+    
+    // Add change event listener
+    radioInput.addEventListener('change', () => {
+        if (radioInput.checked) {
+            // Remove is-checked class from all radio inputs with the same name
+            const sameNameRadios = document.querySelectorAll(`input[type="radio"][name="${radioInput.name}"]`);
+            sameNameRadios.forEach(radio => {
+                const label = radio.closest('label');
+                if (label && !label.classList.contains('radio-button')) {
+                    label.classList.remove('is-checked');
+                }
+            });
+            
+            // Add is-checked class to current selection
+            if (parentLabel) {
+                parentLabel.classList.add('is-checked');
+            }
+        }
+    });
+    
+    // Set initial state
+    if (radioInput.checked && parentLabel) {
+        parentLabel.classList.add('is-checked');
+    }
+});
 // ~! End Handle radio button selection
 
 
@@ -850,4 +895,3 @@ if (tetherAmountSellInput) {
 }
 // ~! end numerical keyboard for mobile
 
- 
