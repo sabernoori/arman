@@ -1,0 +1,216 @@
+/* hover animation for wallet item on desktop */
+@media (min-width: 992px) {
+        .wallet-front,
+        .wallet-back,
+        .wallet_card {
+        transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .wallet_item:hover .wallet-front,
+        .wallet_item:hover .wallet-back {
+        transform: translateY(20px);
+        }
+
+        .wallet_item:hover .wallet_card {
+        transform: translateY(-20px);
+        }
+/* wallet intro animation  */
+        @keyframes walletIntro {
+        from {
+            transform: translateY(10.75rem) scale(0.75);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+        }
+
+        .wallet_item {
+        animation: walletIntro 1.4s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        opacity: 0; /* In case JS disables animation */
+        will-change: transform, opacity;
+        }
+
+}
+
+
+/* animation for profile card  */
+@media (min-width: 992px) {
+
+
+
+
+    /* animations on start for profile card  */
+        .prof_blocks-list-big .prof_blocks-list {
+            opacity: 0;
+            transform: translateY(0);
+            animation-duration: 1s;
+            animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+            animation-fill-mode: forwards;
+        }
+
+        .prof_blocks-list-big .prof_blocks-list.is-first,
+        .prof_blocks-list-big .prof_blocks-list.is-fitth {
+            animation-name: liftUpStandard;
+        }
+
+        .prof_blocks-list-big .prof_blocks-list.is-second {
+            animation-name: liftUpSecond;
+        }
+
+        .prof_blocks-list-big .prof_blocks-list.is-center {
+            animation-name: liftUpCenter;
+        }
+
+        .prof_blocks-list-big .prof_blocks-list.is-forth {
+            animation-name: liftUpForth;
+        }
+
+        @keyframes liftUpStandard {
+            from {
+            transform: translateY(0);
+            opacity: 0;
+            }
+            to {
+            transform: translateY(-10.75rem);
+            opacity: 1;
+            }
+        }
+
+        @keyframes liftUpSecond {
+            from {
+            transform: translateY(0);
+            opacity: 0;
+            }
+            to {
+            transform: translateY(-47px);
+            opacity: 1;
+            }
+        }
+
+        @keyframes liftUpCenter {
+            from {
+            transform: translateY(0);
+            opacity: 0;
+            }
+            to {
+            transform: translateY(-88px);
+            opacity: 1;
+            }
+        }
+
+        @keyframes liftUpForth {
+            from {
+            transform: translateY(0);
+            opacity: 0;
+            }
+            to {
+            transform: translateY(-158px);
+            opacity: 1;
+            }
+        }
+
+        .prof_blocks.is-full,
+        .prof_blocks.is-clear {
+            opacity: 0;
+            animation: fadeInBlock 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes fadeInBlock {
+            from {
+            opacity: 0;
+            }
+            to {
+            opacity: 1;
+            }
+        }
+}
+
+
+/* hover animation for card front */
+
+.card_front {
+  /* existing styles */
+  transform: skew(-17deg, 11deg) translate(0px, 56px) scale(1);
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform;
+}
+
+.card_front:hover {
+  transform: skew(-12deg, 7deg) translate(0px, 56px) scale(1.05);
+}
+
+@media screen and (max-width: 991px) {
+        .card_front {
+            transform: skew(-17deg, 11deg) translate(-83px, 133px) scale(1);
+        }
+
+        .card_front:hover {
+            transform: skew(-17deg, 11deg) translate(-83px, 133px) scale(1.05);
+        }
+}
+
+
+/* animation for big cta  */
+.nav_cta-button {
+  background-size: 200%;
+  background-position: left center;
+  transform: scale(1);
+  transition: background-position 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav_cta-button.-wfp-hover,
+.nav_cta-button:hover {
+  background-position: right center;
+  transform: scale(1.05);
+}
+/* animation for small btn  */
+.btn_small {
+  transform: scale(1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn_small:hover {
+  transform: scale(1.1);
+}
+
+
+/* select box styles  */
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: relative;
+  width: 12rem;
+  height: 3rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--colors--text-menu-inactive);
+  border-radius: 0.5rem;
+  background-color: var(--colors--white);
+  color: var(--colors--text-dark);
+  font-size: 1rem;
+  cursor: pointer;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23666" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+}
+
+select:focus {
+  outline: none;
+  border-color: var(--colors--text-menu-hover);
+}
+
+option {
+  padding: 0.75rem 0.5rem;
+  background-color: var(--colors--white);
+  color: var(--colors--text-dark);
+}
+
+
+
+
+
+
