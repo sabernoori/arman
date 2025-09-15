@@ -1,7 +1,7 @@
 
 const translations = {
     en: {
-        "navCta": "Quick Buy or Sell",
+        "navCta": "Quick Swap",
         "navDashboard": "Dashboard",
         "navWallet": "Wallet",
         "navTransactions": "Transactions",
@@ -39,7 +39,7 @@ const translations = {
     },
 
         tr: {
-        "navCta": "Hızlı Al veya Sat",
+        "navCta": "hızlı değişim",
         "navDashboard": "Kontrol Paneli",
         "navWallet": "Cüzdan",
         "navTransactions": "İşlemler",
@@ -75,7 +75,7 @@ const translations = {
     },
 
     fa: {
-        "navCta": "خرید یا فروش سریع",
+        "navCta": "مبادله سریع دارایی",
         "navDashboard": "داشبورد",
         "navWallet": "کیف پول",
         "navTransactions": "تراکنش ها",
