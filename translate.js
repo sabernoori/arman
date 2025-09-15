@@ -34,7 +34,8 @@ const translations = {
         "langDisplay": "En",
         "allTransactions": "All",
         "transactionType": "Type",
-        "all": "All"
+        "all": "All",
+        "navBuysell": "Buy or Sell"
 
     },
 
@@ -70,7 +71,9 @@ const translations = {
         "paid": "Ödendi",
         "got": "Alındı",
         "langDisplay": "Tr",
-        "all": "All"
+        "all": "All",
+        "navBuysell": "alışveriş"
+
 
     },
 
@@ -108,7 +111,9 @@ const translations = {
         "langDisplay": "Fa",
         "allTransactions": "همه تراکنش ها",
         "transactionType": "نوع تراکنش",
-        "all": "همه"
+        "all": "همه",
+        "navBuysell": "خرید و فروش"
+
     }
 };
 
